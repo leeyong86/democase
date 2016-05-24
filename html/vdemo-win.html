@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>vue demo</title>
+    <link href="../css/frozen.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<header class="ui-header ui-header-stable ui-border-b">
+    <i class="ui-icon-return"></i><h1 tapmode="" onclick="testF();">信息列表</h1>
+</header>
+<footer class="ui-footer ui-footer-stable ui-border-t">
+    <ul class="ui-tiled">
+        <li><div>菜单</div><i>1</i></li>
+        <li><div>菜单</div><i>2</i></li>
+        <li><div>菜单</div><i>3</i></li>
+    </ul>
+</footer>
+<section class="ui-container ui-center"></section>
+</body>
+<script type="text/javascript">
+function fixStatusBar(el){
+    if(!el){
+        return 0;
+    }
+    var fixHeight= 0;
+    if(api.systemType == 'ios'){
+        var fullScreen = api.fullScreen;
+        var iOS7StatusBarAppearance = api.iOS7StatusBarAppearance;
+
+        if (parseInt(api.systemVersion) >= 7 && !fullScreen && iOS7StatusBarAppearance) {
+            fixHeight= 20;
+        }
+    }else{
+        if(parseFloat(api.systemVersion) >= 4.4){
+            fixHeight= 25;
+        }
+    }
+    return fixHeight;
+}
+apiready= function () {
+    var headerObj= document.querySelectorAll('header')[0],
+        headerHeight= headerObj.offsetHeight,
+        bottomObj= document.querySelectorAll('footer')[0],
+        bottomHeight= bottomObj.offsetHeight;
+
+    var fixHeight= fixStatusBar(headerObj);
+
+    headerObj.style.height = (headerHeight+ fixHeight)+ 'px';
+    headerObj.style.paddingTop= fixHeight+ 'px';
+    headerHeight+= fixHeight;
+
+    api.setStatusBarStyle({
+        style: 'dark',color:'#000'
+    });
+
+    api.openFrame({
+        name: 'win_frm',
+        url: 'vdemo.html',
+        rect: {
+            x: 0, y: headerHeight,
+            w: 'auto',
+            h: 'auto',
+            marginBottom: bottomHeight
+        },
+        pageParam: {}
+    });
+};
+function testF(){
+//    var speechRecognizer = api.require('speechRecognizer');
+//    speechRecognizer.record({
+//        vadbos:5000,
+//        vadeos:5000,
+//        rate:16000,
+//        asrptt:0,
+////        audioPath:'fs://speechRecogniser/speech.mp3'
+//    },function(ret,err){
+//        if(ret.status){
+//            api.alert({msg:ret.wordStr});
+//        } else {
+//            api.alert({msg:err.msg});
+//        }
+//    });
+    api.openFrame({
+        name: 'voice-reco-frm',
+        url: 'voice-recognizer-frm.html',
+        bgColor: '#fff',
+        rect: {
+            x: 0, y: 0,
+            w: 'auto', h: 'auto'
+        },
+        pageParam: {}
+    });
+}
+</script>
+</html>

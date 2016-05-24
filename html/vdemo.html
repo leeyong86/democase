@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>vue demo</title>
+    <link href="../css/frozen.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+</style>
+</head>
+<body>
+<ul class="ui-list ui-border-tb ui-list-active">
+    <li class="ui-border-t" v-for="i in dataList" >
+        <div class="ui-list-img">
+            <span v-bind:style="{backgroundImage: 'url('+ i.infoImgUrl[0]+')'}"></span>
+        </div>
+        <div class="ui-list-info">
+            <h4 class="ui-nowrap" v-text="i.infoTitle"></h4>
+            <p class="ui-nowrap" v-text="i.infoSummary"></p>
+        </div>
+    </li>
+</ul>
+<div class="ui-loading-wrap" v-show="showBottomBar.showBar">
+    <p v-text="bottomBarTxt"></p><i class="ui-loading" v-show="showBottomBar.showIcon"></i>
+</div>
+</body>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<!--<script type="text/javascript" src="../script/vue-tap.js"></script>-->
+<script type="text/javascript" src="../script/vue-demo.js"></script>
+</html>

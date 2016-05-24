@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<title>语音识别</title>
+<link href="../css/weui.min.css" type="text/css" rel="stylesheet">
+<link href="../css/loading.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    [v-cloak] {
+        display: none;
+    }
+    .weui_msg {
+        padding-top: 35%;
+    }
+    .weui_icon_msg:before {
+        font-size: 84px;
+    }
+    .weui_msg .weui_msg_title {
+        font-weight: 400;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+    .weui_msg .weui_msg_desc {
+        font-size: 20px;
+        font-weight: 400;
+        color: #888;
+        margin-bottom: 10px;
+    }
+    @font-face {font-family: 'icon-mic';src: url('../fonts/mic-3.ttf') format('truetype');}
+    .weui_icon_success:before {
+        font-family: icon-mic !important;
+        content: "\e6fc";
+    }
+    .weui_msg .weui_extra_area {
+        font-size: 80px;
+    }
+    .ui-btn{
+        height: 35px;top: 15px;right: 15px;position: absolute;
+    }
+    .sk-three-bounce .sk-child {
+        background-color: #09bb07;
+    }
+</style>
+</head>
+<body>
+<img src="../image/close-circle.png" v-touch:tap="closeFrm" class="ui-btn" >
+<div class="container" id="container" v-cloak>
+    <div class="msg">
+        <div class="weui_msg">
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title" v-text="hintTittle"></h2>
+                <p class="weui_msg_desc">这是描述</p>
+                <p class="weui_msg_desc">这是描述</p>
+                <p class="weui_msg_desc">这是描述</p>
+            </div>
+            <div class="weui_extra_area">
+                <!--<a href="">查看详情</a>-->
+                <div class="weui_icon_area">
+                    <i v-show="!showLoading" v-touch:tap="tapMic" v-touch:press="startRecord" v-touch:pressup="finishRecord" v-touch:pan="finishRecord"
+                       class="weui_icon_success weui_icon_msg"></i>
+                    <div v-show="showLoading" class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/hammer.min.js"></script>
+<script type="text/javascript" src="../script/vue-touch.min.js"></script>
+<script type="text/javascript" src="../script/voice-recognizer.js"></script>
+</html>
